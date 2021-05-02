@@ -45,11 +45,8 @@ func LoadFromDir(dir string) (*FontFamily, error) {
 
 		name := fn[:len(fn)-len(ext)]
 		ss := strings.Split(name, "-")
-		if len(ss) != 2 {
-			return nil, fmt.Errorf("failed to parse %q name", fn)
-		}
 
-		if err := fs.LoadFont(filepath.Join(dir, fn), Style(ss[1])); err != nil {
+		if err := fs.LoadFont(filepath.Join(dir, fn), Style(ss[len(ss)-1])); err != nil {
 			return nil, err
 		}
 	}
